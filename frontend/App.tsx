@@ -1,7 +1,5 @@
 import React from "react";
 import { NativeBaseProvider, Box } from "native-base";
-
-import { SafeAreaView } from "react-native-safe-area-context";
 import Home from "./screens/Home";
 import StartPage from "./screens/StartPage";
 
