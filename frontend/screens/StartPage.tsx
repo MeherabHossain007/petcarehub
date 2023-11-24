@@ -1,19 +1,23 @@
-import { Button, Text } from "native-base";
+import { Text } from "native-base";
 import React from "react";
 import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import logo from "../assets/logo.png";
 import { Entypo } from "@expo/vector-icons";
-export default function StartPage() {
+export default function StartPage({ navigation }) {
   return (
     <>
       <View style={style.iconStyle}>
-        <Entypo name="cross" size={30} color="black" />
+        <Entypo
+          onPress={() => navigation.navigate("Home")}
+          name="cross"
+          size={30}
+          color="black"
+        />
       </View>
       <View style={style.firstContainer}>
         <View>
           <Text style={style.text1}>All Your Pet Needs</Text>
-          <Text style={style.text2}>A Little </Text>
-          <Text style={style.text2}>Care</Text>
+          <Text style={style.text2}>A Little</Text>
           <Text style={style.text3}>From You</Text>
         </View>
       </View>

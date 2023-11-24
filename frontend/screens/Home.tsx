@@ -1,9 +1,13 @@
+import { View, Text, Button } from "native-base";
 import React from "react";
-import StartPage from "./StartPage";
+
 export default function Home() {
   return (
     <>
-      <StartPage></StartPage>
+      <View>
+        <Text>This is home!</Text>
+        <Button></Button>
+      </View>
     </>
   );
 }
