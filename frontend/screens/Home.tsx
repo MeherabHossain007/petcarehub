@@ -1,6 +1,6 @@
 import { Button, Text } from "native-base";
 import React from "react";
-import { Image, View, StyleSheet } from "react-native";
+import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import logo from "../assets/logo.png";
 export default function Home() {
   return (
@@ -19,6 +19,18 @@ export default function Home() {
           Furry Friends, Forever Love. Unleash happiness at our pet shop, where
           every pawprint finds its forever home
         </Text>
+        {/* <View style={style.fullBtn}>
+          <Button style={style.btnStyle}>Login</Button>
+          <Button style={style.btnStyle}>Sign Up</Button>
+        </View> */}
+        <View style={style.fullBtn}>
+          <TouchableOpacity style={style.btnStyle}>
+            <Text style={style.btnText}>Sign Up</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={style.btnStyle}>
+            <Text style={style.btnText}>Login</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   );
@@ -69,5 +81,27 @@ const style = StyleSheet.create({
     right: -30,
     color: "#939393",
     marginTop: 10,
+  },
+  // fullBtn: {
+  //   display: "flex",
+  // },
+  // btnStyle: {
+  //   width: 100,
+  // },
+  fullBtn: {
+    flexDirection: "row",
+    gap: 50,
+    top: 150,
+    left: 60,
+  },
+  btnStyle: {
+    backgroundColor: "#2196F3",
+    padding: 10,
+    borderRadius: 5,
+    width: 100,
+    alignItems: "center",
+  },
+  btnText: {
+    color: "white",
   },
 });
