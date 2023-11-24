@@ -8,6 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RegisterPage from "./screens/RegisterPage";
 import LoginPage from "./screens/LoginPage";
+import Dashboard from "./screens/Dashboard";
 
 export default function App() {
   const stack = createStackNavigator();
@@ -17,11 +18,12 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <stack.Navigator screenOptions={{ headerShown: false }}>
+        <stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Dashboard'>
           <stack.Screen name="StartPage" component={StartPage} />
           <stack.Screen name="Home" component={Home} />
           <stack.Screen name="RegisterPage" component={RegisterPage} />
           <stack.Screen name="LoginPage" component={LoginPage} />
+          <stack.Screen name="Dashboard" component={Dashboard} />
         </stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
