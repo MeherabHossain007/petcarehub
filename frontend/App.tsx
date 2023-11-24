@@ -6,6 +6,8 @@ import StartPage from "./screens/StartPage";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import RegisterPage from "./screens/RegisterPage";
+import LoginPage from "./screens/LoginPage";
 
 export default function App() {
   const stack = createStackNavigator();
@@ -18,6 +20,8 @@ export default function App() {
         <stack.Navigator screenOptions={{ headerShown: false }}>
           <stack.Screen name="StartPage" component={StartPage} />
           <stack.Screen name="Home" component={Home} />
+          <stack.Screen name="RegisterPage" component={RegisterPage} />
+          <stack.Screen name="LoginPage" component={LoginPage} />
         </stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

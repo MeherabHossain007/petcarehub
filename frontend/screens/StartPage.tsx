@@ -29,10 +29,20 @@ export default function StartPage({ navigation }) {
         </Text>
         <View style={style.fullBtn}>
           <TouchableOpacity style={style.btnStyle}>
-            <Text style={style.btnText}>Sign Up</Text>
+            <Text
+              onPress={() => navigation.navigate("RegisterPage")}
+              style={style.btnText}
+            >
+              Register
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={style.btnStyle}>
-            <Text style={style.btnText}>Login</Text>
+            <Text
+              onPress={() => navigation.navigate("LoginPage")}
+              style={style.btnText}
+            >
+              Login
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

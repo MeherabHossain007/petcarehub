@@ -4,10 +4,9 @@ import { Heading, Icon, Input, Stack, VStack } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import cat1 from "../assets/Cat1.png";
-import cat2 from "../../../petcarehub/frontend/assets/Cat2.png";
+import cat2 from "../assets/Cat2.png";
 
 export default function Home() {
-  const bottom_tab = createBottomTabNavigator();
   return (
     <>
       <View style={style.inputContainer}>
