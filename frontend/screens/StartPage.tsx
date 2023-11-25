@@ -1,7 +1,6 @@
 import { Text } from "native-base";
 import React from "react";
 import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
-import logo from "../assets/logo.png";
 import { Entypo } from "@expo/vector-icons";
 export default function StartPage({ navigation }) {
   return (
@@ -22,7 +21,7 @@ export default function StartPage({ navigation }) {
         </View>
       </View>
       <View style={style.secondContainer}>
-        <Image style={style.logoStyle} source={logo} />
+        <Image style={style.logoStyle} source={require("../assets/logo.png")} />
         <Text style={style.logoText}>
           Furry Friends, Forever Love. Unleash happiness at our pet shop, where
           every pawprint finds its forever home.
@@ -52,12 +51,8 @@ export default function StartPage({ navigation }) {
 
 const style = StyleSheet.create({
   firstContainer: {
-    // backgroundColor: "gray",
-
     height: 150,
-    // borderWidth: 2,
-    // borderColor: "black",
-    // borderRadius: 10,
+
     paddingLeft: 30,
     marginTop: 20,
     marginLeft: 70,

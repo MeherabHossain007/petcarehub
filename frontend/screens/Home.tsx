@@ -1,13 +1,7 @@
 import { Image, View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import React from "react";
-import { Heading, Icon, Input, ScrollView, Stack, VStack } from "native-base";
+import { Heading, Icon, Input, ScrollView, VStack } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import cat1 from "../assets/Cat1.png";
-import cat2 from "../assets/Cat2.png";
-import cat from "../assets/cat.png";
-import dog from "../assets/dog.png";
-import bird from "../assets/bird.png";
 
 export default function Home() {
   return (
@@ -45,20 +39,58 @@ export default function Home() {
             </TouchableOpacity>
           </View>
           <View style={style.heroRight}>
-            <Image source={cat1} />
-            <Image style={style.imgBottom} source={cat2} />
+            <Image source={require("../assets/Cat1.png")} />
+
+            <Image
+              style={style.imgBottom}
+              source={require("../assets/Cat2.png")}
+            />
           </View>
         </View>
         <View>
           <Text style={style.mainText2}>Shop By Pet</Text>
         </View>
         <View style={style.secondContainer}>
-          <Image source={dog} />
+          <Image source={require("../assets/dog.png")} />
           <Text style={style.animalText1}>Dog items!</Text>
-          <Image source={cat} />
+          <Image source={require("../assets/cat.png")} />
           <Text style={style.animalText2}>Cat items!</Text>
-          <Image source={bird} />
+          <Image source={require("../assets/bird.png")} />
           <Text style={style.animalText3}>Bird items!</Text>
+        </View>
+        {/* Adopt from us section  */}
+        <View>
+          <Text style={style.mainText3}>Adopt from us</Text>
+        </View>
+        <View style={style.heroMain3}>
+          <View style={style.heroLeft}>
+            <Image source={require("../assets/women.png")}></Image>
+          </View>
+          <View style={style.heroRight2}>
+            <Text style={style.secondText}>
+              "Explore our website to find your perfect companion.
+            </Text>
+            <TouchableOpacity style={style.btnStyle}>
+              <Text style={style.btnText}>Adopt Now</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        {/* Pet Health Advice  */}
+        <View>
+          <Text style={style.mainText4}>Free Pet Health Advice</Text>
+        </View>
+        <View style={style.heroMain4}>
+          <View style={style.heroLeft}>
+            <View style={style.heroRight4}>
+              <Text style={style.secondText}>
+                "Explore our website to find your perfect companion.
+              </Text>
+              <TouchableOpacity style={style.btnStyle}>
+                <Text style={style.btnText}>Advice</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <Image source={require("../assets/twoCat.png")}></Image>
         </View>
       </ScrollView>
     </>
@@ -66,6 +98,49 @@ export default function Home() {
 }
 
 const style = StyleSheet.create({
+  mainText3: {
+    fontSize: 22,
+    lineHeight: 44,
+
+    paddingLeft: 15,
+  },
+  mainText4: {
+    fontSize: 22,
+    lineHeight: 44,
+
+    paddingLeft: 15,
+  },
+  heroMain4: {
+    flexDirection: "row",
+
+    marginLeft: 10,
+    marginRight: 10,
+    paddingTop: 20,
+  },
+  heroMain3: {
+    // borderWidth: 2,
+    // borderColor: "black",
+    // borderRadius: 10,
+
+    backgroundColor: "#EEE9F2",
+    flexDirection: "row",
+    marginTop: 10,
+
+    marginLeft: 10,
+    marginRight: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
+  heroRight2: {
+    width: 150,
+    position: "relative",
+  },
+  heroRight4: {
+    width: 180,
+    position: "relative",
+
+    marginLeft: 10,
+  },
   inputContainer: {
     marginTop: 50,
     marginLeft: 30,
@@ -82,9 +157,6 @@ const style = StyleSheet.create({
     color: "white",
   },
   heroMain: {
-    // borderWidth: 2,
-    // borderColor: "black",
-    // borderRadius: 10,
     backgroundColor: "#EEE9F2",
     flexDirection: "row",
     marginTop: 30,
@@ -95,16 +167,10 @@ const style = StyleSheet.create({
   },
   heroLeft: {
     width: 200,
-    // borderWidth: 2,
-    // borderColor: "black",
-    // borderRadius: 10,
   },
   heroRight: {
     width: 150,
     position: "relative",
-    // borderWidth: 2,
-    // borderColor: "black",
-    // borderRadius: 10,
   },
   imgBottom: {
     position: "absolute",
@@ -118,9 +184,7 @@ const style = StyleSheet.create({
   mainText2: {
     fontSize: 22,
     lineHeight: 44,
-    // borderWidth: 2,
-    // borderColor: "black",
-    // borderRadius: 10,
+
     paddingLeft: 15,
     paddingTop: 20,
   },
@@ -130,15 +194,10 @@ const style = StyleSheet.create({
     lineHeight: 20,
   },
   secondContainer: {
-    // borderWidth: 2,
-    // borderColor: "black",
-    // borderRadius: 10,
-    // backgroundColor: "#EEE9F2",
     flexDirection: "row",
     position: "relative",
     gap: 25,
 
-    // marginTop: 30,
     marginLeft: 10,
     marginRight: 10,
     paddingTop: 10,
@@ -159,10 +218,6 @@ const style = StyleSheet.create({
     position: "absolute",
     color: "white",
     top: 40,
-    left: 270,
+    left: 262,
   },
 });
-
-// borderWidth: 2,
-// borderColor: "black",
-// borderRadius: 10,

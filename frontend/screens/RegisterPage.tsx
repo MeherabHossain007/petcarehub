@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
-import logo from "../assets/logo.png";
+
 import {
   Box,
   Button,
@@ -17,7 +17,10 @@ const RegisterPage = () => {
   return (
     <View>
       <View style={style.imageContainer}>
-        <Image style={style.imageLogo} source={logo}></Image>
+        <Image
+          style={style.imageLogo}
+          source={require("../assets/logo.png")}
+        ></Image>
       </View>
       <Center w="100%">
         <Box safeArea p="2" py="8" w="90%" maxW="290">
