@@ -20,7 +20,7 @@ import {
   VStack,
 } from "native-base";
 
-const Dashboard = () => {
+const Dashboard = ({navigation} : {navigation: any}) => {
   const [service, setService] = useState("");
   return (
     <>
@@ -92,7 +92,7 @@ const Dashboard = () => {
                     $26.99
                   </Text>
 
-                  <Button>Show details</Button>
+                  <Button onPress={() => navigation.navigate('Details')}>Show details</Button>
                 </Stack>
               </Box>
             </Box>

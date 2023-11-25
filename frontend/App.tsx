@@ -9,11 +9,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RegisterPage from "./screens/RegisterPage";
 import LoginPage from "./screens/LoginPage";
 import Dashboard from "./screens/Dashboard";
+import Details from "./screens/Details";
 
 export default function App() {
   const stack = createStackNavigator();
 
-  const bottom_tab = createBottomTabNavigator();
+  const Tab = createBottomTabNavigator();
 
   return (
     <NativeBaseProvider>
@@ -24,7 +25,10 @@ export default function App() {
           <stack.Screen name="RegisterPage" component={RegisterPage} />
           <stack.Screen name="LoginPage" component={LoginPage} />
           <stack.Screen name="Dashboard" component={Dashboard} />
+          <stack.Screen name="Details" component={Details} />
         </stack.Navigator>
+
+        
       </NavigationContainer>
     </NativeBaseProvider>
   );
