@@ -25,7 +25,7 @@ export default function StartPage({ navigation }) {
         <Image style={style.logoStyle} source={logo} />
         <Text style={style.logoText}>
           Furry Friends, Forever Love. Unleash happiness at our pet shop, where
-          every pawprint finds its forever home
+          every pawprint finds its forever home.
         </Text>
         <View style={style.fullBtn}>
           <TouchableOpacity style={style.btnStyle}>
