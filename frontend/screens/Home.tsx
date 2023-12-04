@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import cat1 from "../assets/Cat1.png";
 import cat2 from "../assets/Cat2.png";
 
-export default function Home() {
+export default function Home({navigation} : {navigation: any}) {
   return (
     <>
       <View style={style.inputContainer}>
@@ -36,7 +36,7 @@ export default function Home() {
           <Text style={style.secondText}>
             Shop from our website and get exclusive products!
           </Text>
-          <TouchableOpacity style={style.btnStyle}>
+          <TouchableOpacity onPress={() => navigation.navigate('Dashboard')} style={style.btnStyle}>
             <Text style={style.btnText}>Get Started</Text>
           </TouchableOpacity>
         </View>

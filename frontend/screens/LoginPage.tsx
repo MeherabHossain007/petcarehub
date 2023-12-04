@@ -13,7 +13,7 @@ import {
   VStack,
 } from "native-base";
 
-const LoginPage = () => {
+const LoginPage = ({navigation} : {navigation:any}) => {
   return (
     <View>
       <View style={style.imageContainer}>
@@ -56,7 +56,7 @@ const LoginPage = () => {
               Log In
             </Button>
             <HStack mt="6" justifyContent="center">
-              <Link
+              <Link onPress={()=> navigation.navigate('RegisterPage')}
                 _text={{
                   color: "indigo.500",
                   fontWeight: "medium",
