@@ -20,7 +20,10 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Dashboard'>
+        <stack.Navigator
+          screenOptions={{ headerShown: false }}
+          initialRouteName="Dashboard"
+        >
           <stack.Screen name="StartPage" component={StartPage} />
           <stack.Screen name="Home" component={Home} />
           <stack.Screen name="RegisterPage" component={RegisterPage} />
@@ -28,7 +31,7 @@ export default function App() {
           <stack.Screen name="AdoptionPage" component={AdoptionPage} />
           <stack.Screen name="Dashboard" component={Dashboard} />
           <stack.Screen name="Details" component={Details} />
-        </stack.Navigator   
+        </stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
   );

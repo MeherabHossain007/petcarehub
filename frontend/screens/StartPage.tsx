@@ -2,6 +2,7 @@ import { Text } from "native-base";
 import React from "react";
 import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+
 export default function StartPage({ navigation }) {
   return (
     <>
