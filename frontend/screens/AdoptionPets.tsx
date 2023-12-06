@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { Icon, Input, ScrollView, VStack } from "native-base";
+import { Button, Icon, Input, ScrollView, VStack } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 
-const AdoptionPets = () => {
+const AdoptionPets = ({ navigation }) => {
   return (
     <>
       <ScrollView>
@@ -36,6 +36,14 @@ const AdoptionPets = () => {
             <Text style={style.Text1}>Mark</Text>
             <Text style={style.Text2}>Domestic Short Hair</Text>
             <Text>Dhaka, Bangladesh...!📍</Text>
+            <TouchableOpacity style={style.btnStyle}>
+              <Text
+                style={style.btnText}
+                onPress={() => navigation.navigate("PetDetails")}
+              >
+                Details
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -47,6 +55,14 @@ const AdoptionPets = () => {
             <Text style={style.Text1}>Mark</Text>
             <Text style={style.Text2}>Domestic Short Hair</Text>
             <Text>Dhaka, Bangladesh...!📍</Text>
+            <TouchableOpacity style={style.btnStyle}>
+              <Text
+                style={style.btnText}
+                onPress={() => navigation.navigate("PetDetails")}
+              >
+                Details
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -58,8 +74,17 @@ const AdoptionPets = () => {
             <Text style={style.Text1}>Mark</Text>
             <Text style={style.Text2}>Domestic Short Hair</Text>
             <Text>Dhaka, Bangladesh...!📍</Text>
+            <TouchableOpacity style={style.btnStyle}>
+              <Text
+                style={style.btnText}
+                onPress={() => navigation.navigate("PetDetails")}
+              >
+                Details
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
+
         {/* Adopt pet 4 */}
 
         <View style={style.adoptMe}>
@@ -68,17 +93,14 @@ const AdoptionPets = () => {
             <Text style={style.Text1}>Mark</Text>
             <Text style={style.Text2}>Domestic Short Hair</Text>
             <Text>Dhaka, Bangladesh...!📍</Text>
-          </View>
-        </View>
-
-        {/* Adopt pet 5 */}
-
-        <View style={style.adoptMe}>
-          <Image source={require("../assets/Cat2.png")}></Image>
-          <View style={style.heroMain5}>
-            <Text style={style.Text1}>Mark</Text>
-            <Text style={style.Text2}>Domestic Short Hair</Text>
-            <Text>Dhaka, Bangladesh...!📍</Text>
+            <TouchableOpacity style={style.btnStyle}>
+              <Text
+                style={style.btnText}
+                onPress={() => navigation.navigate("PetDetails")}
+              >
+                Details
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -87,6 +109,17 @@ const AdoptionPets = () => {
 };
 
 const style = StyleSheet.create({
+  btnStyle: {
+    backgroundColor: "#2196F3",
+    padding: 10,
+    borderRadius: 5,
+    width: 100,
+    alignItems: "center",
+    marginTop: 20,
+  },
+  btnText: {
+    color: "white",
+  },
   inputContainer: {
     marginTop: 50,
     marginLeft: 30,
