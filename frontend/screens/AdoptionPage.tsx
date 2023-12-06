@@ -4,7 +4,7 @@ import { Button, Icon, Input, ScrollView, VStack } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 
-const AdoptionPage = () => {
+const AdoptionPage = ({ navigation }) => {
   return (
     <>
       <ScrollView>
@@ -51,19 +51,19 @@ const AdoptionPage = () => {
           <Text style={style.mainText3}>Categories</Text>
         </View>
         <View style={style.heroMain4}>
-          <Button>
+          <Button onPress={() => navigation.navigate("AdoptionForm")}>
             <Image
               style={style.dogIcon}
               source={require("../assets/dogIcon.png")}
             />
           </Button>
-          <Button>
+          <Button onPress={() => navigation.navigate("AdoptionForm")}>
             <Image
               style={style.dogIcon}
               source={require("../assets/catIcon.png")}
             />
           </Button>
-          <Button>
+          <Button onPress={() => navigation.navigate("AdoptionForm")}>
             <Image
               style={style.dogIcon}
               source={require("../assets/rescueIcon.png")}

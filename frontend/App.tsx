@@ -11,6 +11,7 @@ import LoginPage from "./screens/LoginPage";
 import AdoptionPage from "./screens/AdoptionPage";
 import Dashboard from "./screens/Dashboard";
 import Details from "./screens/Details";
+import AdoptionForm from "./screens/AdoptionForm";
 
 export default function App() {
   const stack = createStackNavigator();
@@ -31,6 +32,7 @@ export default function App() {
           <stack.Screen name="AdoptionPage" component={AdoptionPage} />
           <stack.Screen name="Dashboard" component={Dashboard} />
           <stack.Screen name="Details" component={Details} />
+          <stack.Screen name="AdoptionForm" component={AdoptionForm} />
         </stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
