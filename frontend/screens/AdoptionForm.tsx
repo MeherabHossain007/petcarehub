@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Icon, Input, ScrollView, VStack, Radio, Checkbox } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 
-const AdoptionForm = () => {
+const AdoptionForm = ({ navigation }) => {
   return (
     <>
       <ScrollView>
@@ -67,7 +67,13 @@ const AdoptionForm = () => {
 
             {/* Search Button */}
             <TouchableOpacity style={styles.searchButton}>
-              <Text style={styles.searchButtonText}>Search Now</Text>
+              <Text
+                onPress={() => navigation.navigate("AdoptionPets")}
+                style={styles.searchButtonText}
+              >
+                Search Now
+              </Text>
+              {/* <Button onPress={() => navigation.navigate("AdoptionForm")}> */}
             </TouchableOpacity>
           </VStack>
         </View>
