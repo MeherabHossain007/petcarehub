@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const PetDetails = ({ navigation }) => {
+const AdoptContact = () => {
   return (
     <>
       <View>
@@ -17,21 +17,23 @@ const PetDetails = ({ navigation }) => {
             <Text style={style.Text1}>Mark</Text>
             <Text style={style.Text2}>Domestic Short Hair</Text>
             <Text>Dhaka, Bangladesh...!📍</Text>
-            <TouchableOpacity style={style.btnStyle}>
-              <Text
-                onPress={() => navigation.navigate("AdoptContact")}
-                style={style.btnText}
-              >
-                Adopt Now
-              </Text>
-            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+
+      <View>
+        <View style={style.heroMain3}>
+          <View style={style.heroMain5}>
+            <Text style={style.Text1}>Contact Details</Text>
+            <Text style={style.Text2}>Address: Dhaka,Bangladesh </Text>
+            <Text style={style.Text2}>Phone: +8801712121212</Text>
+            <Text style={style.Text2}>Email: MarkTheCat@gmail.com </Text>
           </View>
         </View>
       </View>
     </>
   );
 };
-
 const style = StyleSheet.create({
   Text1: {
     fontWeight: "bold",
@@ -41,7 +43,7 @@ const style = StyleSheet.create({
     // borderRadius: 10,
   },
   Text2: {
-    fontSize: 10,
+    fontSize: 16,
   },
   heroMain5: {
     // borderWidth: 2,
@@ -100,5 +102,4 @@ const style = StyleSheet.create({
     paddingBottom: 20,
   },
 });
-
-export default PetDetails;
+export default AdoptContact;
