@@ -11,6 +11,10 @@ import LoginPage from "./screens/LoginPage";
 import AdoptionPage from "./screens/AdoptionPage";
 import Dashboard from "./screens/Dashboard";
 import Details from "./screens/Details";
+import AdoptionForm from "./screens/AdoptionForm";
+import AdoptionPets from "./screens/AdoptionPets";
+import PetDetails from "./screens/PetDetails";
+import AdoptContact from "./screens/AdoptContact";
 
 export default function App() {
   const stack = createStackNavigator();
@@ -31,6 +35,10 @@ export default function App() {
           <stack.Screen name="AdoptionPage" component={AdoptionPage} />
           <stack.Screen name="Dashboard" component={Dashboard} />
           <stack.Screen name="Details" component={Details} />
+          <stack.Screen name="AdoptionForm" component={AdoptionForm} />
+          <stack.Screen name="AdoptionPets" component={AdoptionPets} />
+          <stack.Screen name="PetDetails" component={PetDetails} />
+          <stack.Screen name="AdoptContact" component={AdoptContact} />
         </stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

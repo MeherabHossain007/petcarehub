@@ -35,7 +35,12 @@ export default function Home({ navigation }) {
               Shop from our website and get exclusive products!
             </Text>
             <TouchableOpacity style={style.btnStyle}>
-              <Text style={style.btnText}>Get Started</Text>
+              <Text
+                onPress={() => navigation.navigate("Dashboard")}
+                style={style.btnText}
+              >
+                Get Started
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={style.heroRight}>
