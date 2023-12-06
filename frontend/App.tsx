@@ -8,6 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RegisterPage from "./screens/RegisterPage";
 import LoginPage from "./screens/LoginPage";
+import AdoptionPage from "./screens/AdoptionPage";
 import Dashboard from "./screens/Dashboard";
 import Details from "./screens/Details";
 
@@ -24,11 +25,10 @@ export default function App() {
           <stack.Screen name="Home" component={Home} />
           <stack.Screen name="RegisterPage" component={RegisterPage} />
           <stack.Screen name="LoginPage" component={LoginPage} />
+          <stack.Screen name="AdoptionPage" component={AdoptionPage} />
           <stack.Screen name="Dashboard" component={Dashboard} />
           <stack.Screen name="Details" component={Details} />
-        </stack.Navigator>
-
-        
+        </stack.Navigator   
       </NavigationContainer>
     </NativeBaseProvider>
   );

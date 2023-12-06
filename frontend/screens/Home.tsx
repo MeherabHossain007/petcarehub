@@ -3,7 +3,7 @@ import React from "react";
 import { Heading, Icon, Input, ScrollView, VStack } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <>
       <ScrollView>
@@ -71,7 +71,12 @@ export default function Home() {
               "Explore our website to find your perfect companion.
             </Text>
             <TouchableOpacity style={style.btnStyle}>
-              <Text style={style.btnText}>Adopt Now</Text>
+              <Text
+                style={style.btnText}
+                onPress={() => navigation.navigate("AdoptionPage")}
+              >
+                Adopt Now
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
