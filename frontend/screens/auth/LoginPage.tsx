@@ -1,6 +1,5 @@
-import { View, Text, Image, StyleSheet } from "react-native";
-import React, { useState } from "react";
-
+import { View, Image, StyleSheet } from "react-native";
+import React from "react";
 import {
   Box,
   Button,
@@ -12,33 +11,10 @@ import {
   Link,
   VStack,
 } from "native-base";
-import axios from "axios";
-import { useNavigation } from "@react-navigation/native";
-import Config from "../config/config";
 
-const RegisterPage = () => {
-  const [name, setName] = useState("");
+const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const navigation = useNavigation();
-
-  const handleSignUp = () => {
-    axios
-      .post(`${Config.localhost}:3000/users/register`, {
-        name: name.toString(),
-        email: email.toString(),
-        password: password.toString(),
-      })
-      .then((response) => {
-        if (response.data == true) {
-          alert("Account created successfully");
-          navigation.navigate("LoginPage" as never);
-        } else {
-          console.log("POST decline!", response.data);
-        }
-      });
-  };
 
   return (
     <View>
@@ -69,19 +45,10 @@ const RegisterPage = () => {
             fontWeight="medium"
             size="xs"
           >
-            Register to continue!
+            Login to continue!
           </Heading>
 
           <VStack space={3} mt="5">
-            <FormControl>
-              <FormControl.Label>Name</FormControl.Label>
-              <Input
-                id="name"
-                type="text"
-                value={name}
-                onChangeText={setName}
-              />
-            </FormControl>
             <FormControl>
               <FormControl.Label>Email ID</FormControl.Label>
               <Input
@@ -100,8 +67,8 @@ const RegisterPage = () => {
                 onChangeText={setPassword}
               />
             </FormControl>
-            <Button mt="2" colorScheme="blue" onPress={handleSignUp}>
-              Register
+            <Button mt="2" colorScheme="blue">
+              Log In
             </Button>
             <HStack mt="6" justifyContent="center">
               <Link
@@ -110,9 +77,9 @@ const RegisterPage = () => {
                   fontWeight: "medium",
                   fontSize: "sm",
                 }}
-                href=""
+                href="#"
               >
-                or login
+                Register
               </Link>
             </HStack>
           </VStack>
@@ -136,4 +103,7 @@ const style = StyleSheet.create({
   },
 });
 
-export default RegisterPage;
+export default LoginPage;
+function useState(arg0: string): [any, any] {
+  throw new Error("Function not implemented.");
+}
