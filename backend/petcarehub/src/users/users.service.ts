@@ -25,14 +25,11 @@ export class UsersService {
     }
   }
 
-  async userAuth(userCredential: UserCredentialDTO): Promise<boolean> {
+  async userAuth(userCredential: UserCredentialDTO): Promise<Users | boolean> {
     try {
-      const user = await this.getUser(
-        userCredential.email,
-        userCredential.password,
-      );
-      if (user && user.name) {
-        return true;
+      const user = this.getUser(userCredential.email, userCredential.password);
+      if (user && (await user).name) {
+        return user;
       } else {
         return false;
       }
