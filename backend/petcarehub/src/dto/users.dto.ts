@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
 
 export class UserCredentialDTO {
   @ApiProperty({
@@ -25,6 +26,7 @@ export class CreateUserDTO {
     type: String,
     example: 'Mr. ABC',
   })
+  @IsString()
   readonly name: string;
 
   @ApiProperty({
@@ -33,6 +35,7 @@ export class CreateUserDTO {
     type: String,
     example: 'abc@bscse.uiu.ac.bd',
   })
+  @IsString()
   readonly email: string;
 
   @ApiProperty({
@@ -41,5 +44,6 @@ export class CreateUserDTO {
     type: String,
     example: '12345678',
   })
+  @IsString()
   readonly password: string;
 }
