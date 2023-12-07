@@ -15,7 +15,6 @@ import AdoptionForm from "./screens/AdoptionForm";
 import AdoptionPets from "./screens/AdoptionPets";
 import PetDetails from "./screens/PetDetails";
 import AdoptContact from "./screens/AdoptContact";
-import { AuthProvider } from "./providers/AuthProvider";
 
 export default function App() {
   const stack = createStackNavigator();
@@ -23,27 +22,25 @@ export default function App() {
   const Tab = createBottomTabNavigator();
 
   return (
-    <AuthProvider>
-      <NativeBaseProvider>
-        <NavigationContainer>
-          <stack.Navigator
-            screenOptions={{ headerShown: false }}
-            initialRouteName="StartPage"
-          >
-            <stack.Screen name="StartPage" component={StartPage} />
-            <stack.Screen name="Home" component={Home} />
-            <stack.Screen name="RegisterPage" component={RegisterPage} />
-            <stack.Screen name="LoginPage" component={LoginPage} />
-            <stack.Screen name="AdoptionPage" component={AdoptionPage} />
-            <stack.Screen name="Dashboard" component={Dashboard} />
-            <stack.Screen name="Details" component={Details} />
-            <stack.Screen name="AdoptionForm" component={AdoptionForm} />
-            <stack.Screen name="AdoptionPets" component={AdoptionPets} />
-            <stack.Screen name="PetDetails" component={PetDetails} />
-            <stack.Screen name="AdoptContact" component={AdoptContact} />
-          </stack.Navigator>
-        </NavigationContainer>
-      </NativeBaseProvider>
-    </AuthProvider>
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <stack.Navigator
+          screenOptions={{ headerShown: false }}
+          initialRouteName="StartPage"
+        >
+          <stack.Screen name="StartPage" component={StartPage} />
+          <stack.Screen name="Home" component={Home} />
+          <stack.Screen name="RegisterPage" component={RegisterPage} />
+          <stack.Screen name="LoginPage" component={LoginPage} />
+          <stack.Screen name="AdoptionPage" component={AdoptionPage} />
+          <stack.Screen name="Dashboard" component={Dashboard} />
+          <stack.Screen name="Details" component={Details} />
+          <stack.Screen name="AdoptionForm" component={AdoptionForm} />
+          <stack.Screen name="AdoptionPets" component={AdoptionPets} />
+          <stack.Screen name="PetDetails" component={PetDetails} />
+          <stack.Screen name="AdoptContact" component={AdoptContact} />
+        </stack.Navigator>
+      </NavigationContainer>
+    </NativeBaseProvider>
   );
 }
