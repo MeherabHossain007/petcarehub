@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Box,
@@ -12,8 +12,34 @@ import {
   Link,
   VStack,
 } from "native-base";
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
+import Config from "../config/config";
 
 const RegisterPage = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigation = useNavigation();
+
+  const handleSignUp = () => {
+    axios
+      .post(`${Config.localhost}:3000/users/register`, {
+        name: name.toString(),
+        email: email.toString(),
+        password: password.toString(),
+      })
+      .then((response) => {
+        if (response.data == true) {
+          alert("Account created successfully");
+          navigation.navigate("LoginPage" as never);
+        } else {
+          console.log("POST decline!", response.data);
+        }
+      });
+  };
+
   return (
     <View>
       <View style={style.imageContainer}>
@@ -48,14 +74,33 @@ const RegisterPage = () => {
 
           <VStack space={3} mt="5">
             <FormControl>
+              <FormControl.Label>Name</FormControl.Label>
+              <Input
+                id="name"
+                type="text"
+                value={name}
+                onChangeText={setName}
+              />
+            </FormControl>
+            <FormControl>
               <FormControl.Label>Email ID</FormControl.Label>
-              <Input />
+              <Input
+                id="email"
+                type="text"
+                value={email}
+                onChangeText={setEmail}
+              />
             </FormControl>
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
-              <Input type="password" />
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChangeText={setPassword}
+              />
             </FormControl>
-            <Button mt="2" colorScheme="blue">
+            <Button mt="2" colorScheme="blue" onPress={handleSignUp}>
               Register
             </Button>
             <HStack mt="6" justifyContent="center">
