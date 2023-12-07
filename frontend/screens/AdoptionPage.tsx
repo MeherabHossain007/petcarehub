@@ -42,7 +42,12 @@ const AdoptionPage = ({ navigation }) => {
               "Explore our website to find your perfect companion.
             </Text>
             <TouchableOpacity style={style.btnStyle}>
-              <Text style={style.btnText}>Adopt Now</Text>
+              <Text
+                style={style.btnText}
+                onPress={() => navigation.navigate("AddPets")}
+              >
+                Add Pets
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
