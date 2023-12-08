@@ -10,6 +10,7 @@ import {
   Button,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { supabase } from "../lib/supabase";
 
 const AddPets = () => {
   const [petName, setPetName] = useState("");
@@ -36,8 +37,15 @@ const AddPets = () => {
     }
   };
 
-  const handleSubmission = () => {
-    // Form submission Logic!
+  const handleSubmission = async () => {
+    const { data, error } = await supabase
+      .from("adoptation")
+      .insert([{ name: petName }, { breed: petBreed }, ])
+      .select();
+
+    if (error) {
+      console.log(error);
+    }
   };
 
   return (
