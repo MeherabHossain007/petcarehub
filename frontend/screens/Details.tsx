@@ -18,11 +18,14 @@ import {
 } from "native-base";
 import { useFonts } from "expo-font";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 
 const Details = ({ route }) => {
   const { prod } = route.params;
   const [modalVisible, setModalVisible] = React.useState(false);
   const [count, setCount] = useState(0);
+
+  const navigation = useNavigation();
 
   const increase = () => {
     setCount(count + 1);
@@ -165,13 +168,8 @@ const Details = ({ route }) => {
                 </Box>
               </Modal.Body>
               <Modal.Footer>
-                <Button
-                  flex="1"
-                  onPress={() => {
-                    setModalVisible(false);
-                  }}
-                >
-                  Add To Cart
+                <Button flex="1" onPress={() => {navigation.navigate("Checkout" as never); setModalVisible(false);}}>
+                  Checkout Now
                 </Button>
               </Modal.Footer>
             </Modal.Content>

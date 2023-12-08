@@ -3,8 +3,11 @@ import React from "react";
 import { Button } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Checkout = () => {
+
+  const navigation = useNavigation();
 
     const handlepress = () => {
         Alert.alert(
@@ -16,6 +19,8 @@ const Checkout = () => {
                 },
             ],
         )
+        
+        navigation.navigate("Dashboard" as never)
     }
   return (
     <>
