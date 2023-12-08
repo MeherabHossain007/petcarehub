@@ -2,7 +2,6 @@ import React from "react";
 import { NativeBaseProvider, Box } from "native-base";
 import Home from "./screens/Home";
 import StartPage from "./screens/StartPage";
-
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
