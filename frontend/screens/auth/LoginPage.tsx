@@ -1,5 +1,5 @@
 import { View, Image, StyleSheet } from "react-native";
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
@@ -11,17 +11,47 @@ import {
   Link,
   VStack,
 } from "native-base";
+import Config from "../../config/config";
+import axios from "axios";
+import { AuthContext, AuthProvider } from "../../providers/AuthProvider";
+import { useNavigation } from "@react-navigation/native";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { LoginState } = useContext(AuthContext);
+
+  const navigation = useNavigation();
+
+  const handleLogin = async () => {
+    axios
+      .post(`${Config.localhost}:3000/users/login`, {
+        email: email.toString(),
+        password: password.toString(),
+      })
+      .then((response) => {
+        if (response.data) {
+          alert("Login successful");
+          LoginState(true, email.toString());
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "Home" as never }],
+          });
+        } else {
+          console.log("POST decline!", response.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error making POST request:", error);
+      });
+  };
 
   return (
     <View>
       <View style={style.imageContainer}>
         <Image
           style={style.imageLogo}
-          source={require("../assets/logo.png")}
+          source={require("../../assets/logo.png")}
         ></Image>
       </View>
       <Center w="100%">
@@ -67,7 +97,7 @@ const LoginPage = () => {
                 onChangeText={setPassword}
               />
             </FormControl>
-            <Button mt="2" colorScheme="blue">
+            <Button mt="2" colorScheme="blue" onPress={handleLogin}>
               Log In
             </Button>
             <HStack mt="6" justifyContent="center">
@@ -104,6 +134,3 @@ const style = StyleSheet.create({
 });
 
 export default LoginPage;
-function useState(arg0: string): [any, any] {
-  throw new Error("Function not implemented.");
-}

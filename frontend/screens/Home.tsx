@@ -95,7 +95,7 @@ export default function Home({ navigation }) {
               <Text style={style.secondText}>
                 "Explore our website to find your perfect companion.
               </Text>
-              <TouchableOpacity style={style.btnStyle}>
+              <TouchableOpacity style={style.btnStyle} onPress={() => navigation.navigate("Chat")}>
                 <Text style={style.btnText}>Advice</Text>
               </TouchableOpacity>
             </View>

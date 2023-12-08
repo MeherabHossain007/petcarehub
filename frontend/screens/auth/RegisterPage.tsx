@@ -45,7 +45,7 @@ const RegisterPage = () => {
       <View style={style.imageContainer}>
         <Image
           style={style.imageLogo}
-          source={require("../assets/logo.png")}
+          source={require("../../assets/logo.png")}
         ></Image>
       </View>
       <Center w="100%">

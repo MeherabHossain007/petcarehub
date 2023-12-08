@@ -8,6 +8,7 @@ import {
   CheckIcon,
   Flex,
   FormControl,
+  HStack,
   Image,
   Input,
   Modal,
@@ -16,8 +17,10 @@ import {
   VStack,
 } from "native-base";
 import { useFonts } from "expo-font";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const Details = () => {
+const Details = ({ route }) => {
+  const { prod } = route.params;
   const [modalVisible, setModalVisible] = React.useState(false);
   const [count, setCount] = useState(0);
 
@@ -41,99 +44,11 @@ const Details = () => {
 
   return (
     <>
-      <ScrollView>
-        <Box mt={"16"}>
-          <Box alignItems={"center"}>
-            <AspectRatio w="90%">
-              <Image
-                rounded={"lg"}
-                source={{
-                  uri: "https://images.deliveryhero.io/image/nv/Thailand/Vendor-Ops/09012023/TH-Whiskas-Tuna-Flavour-Cat-Food-3kg-Front-View.jpg?height=480",
-                }}
-                alt="Image"
-              />
-            </AspectRatio>
-          </Box>
-
-          <Center mt={5}>
-            <Box>
-              <Text style={styles.text1}>Details</Text>
-
-              <Text style={styles.text2}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt nam, ea rerum nemo quas exercitationem doloremque.
-                Atque dolorum vero est?
-              </Text>
-
-              <Text style={styles.text3}>Review & Ratiings</Text>
-              <Text style={styles.text2}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt nam, ea rerum nemo quas exercitationem doloremque.
-                Atque dolorum vero est?
-              </Text>
-              <Text style={styles.text2}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt nam, ea rerum nemo quas exercitationem doloremque.
-                Atque dolorum vero est?
-              </Text>
-              <Text style={styles.text2}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt nam, ea rerum nemo quas exercitationem doloremque.
-                Atque dolorum vero est?
-              </Text>
-              <Text style={styles.text2}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt nam, ea rerum nemo quas exercitationem doloremque.
-                Atque dolorum vero est?
-              </Text>
-            </Box>
-          </Center>
-        </Box>
-      </ScrollView>
-
-      <Flex
-        position={"absolute"}
-        bottom={"0"}
-        width={"100%"}
-        direction="row"
-        justifyContent={"center"}
-        gap={4}
-      >
-        <Button width={"32"} mb={"2"}>
-          Buy Now
-        </Button>
-        {/* <Button width={"32"} mb={"2"} left={"2"}>
-          Add To Cart
-        </Button> */}
-
-        <Modal
-          isOpen={modalVisible}
-          onClose={() => setModalVisible(false)}
-          avoidKeyboard
-          justifyContent="flex-end"
-          size="full"
-        >
-          <Modal.Content>
-            <Modal.CloseButton />
-            <Modal.Header>
-              <Box>
-                <AspectRatio w="50%" ratio={16 / 9}>
-                  <Image
-                    rounded={"lg"}
-                    source={{
-                      uri: "https://images.deliveryhero.io/image/nv/Thailand/Vendor-Ops/09012023/TH-Whiskas-Tuna-Flavour-Cat-Food-3kg-Front-View.jpg?height=480",
-                    }}
-                    alt="Image"
-                  />
-                </AspectRatio>
-              </Box>
-              <Box position={"absolute"} left={"48"} top={"5"} gap={2}>
-                <Text style={{ color: "#2196F3" }}>$26.99</Text>
-                <Text style={{ color: "#939393" }}>Dog Food</Text>
-              </Box>
-            </Modal.Header>
-            <Modal.Body>
-              <AspectRatio w="30%" ratio={16 / 9}>
+      <SafeAreaView>
+        <ScrollView>
+          <Box mt={"16"} p={4}>
+            <Box alignItems={"center"}>
+              <AspectRatio w="90%">
                 <Image
                   rounded={"lg"}
                   source={{
@@ -142,47 +57,127 @@ const Details = () => {
                   alt="Image"
                 />
               </AspectRatio>
+            </Box>
 
-              <Box style={{ marginTop: 50 }}>
-                <Flex
-                  direction="row"
-                  justifyContent={"space-between"}
-                  alignItems={"center"}
-                >
-                  <Text style={{ fontWeight: "bold" }}>Quantity</Text>
-                  <Box>
-                    <Flex direction={"row"} gap={4} alignItems={"center"}>
-                      <Button onPress={increase}>+</Button>
-                      <Text>{count}</Text>
-                      <Button onPress={decrease}>-</Button>
-                    </Flex>
-                  </Box>
-                </Flex>
+            <Center mt={5}>
+              <Box>
+                <VStack space={4}>
+                  <Text style={styles.text3}>{prod.title}</Text>
+                  <HStack>
+                    <Text style={styles.text1}>price: </Text>
+                    <Text style={styles.text3}>{prod.price}</Text>
+                  </HStack>
+                  <Text style={styles.text1}>Details</Text>
+                  <Text style={styles.text2}>{prod.description}</Text>
+                </VStack>
               </Box>
-            </Modal.Body>
-            <Modal.Footer>
+            </Center>
+          </Box>
+        </ScrollView>
+
+        <Flex
+          position={"absolute"}
+          bottom={"0"}
+          width={"100%"}
+          direction="row"
+          justifyContent={"center"}
+          gap={4}
+        >
+          <Box
+            bg={"white"}
+            height={100}
+            width={"100%"}
+            p={3}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <HStack space={4}>
+              <Button width={"32"} mb={"2"}>
+                Buy Now
+              </Button>
               <Button
-                flex="1"
+                width={"32"}
+                mb={"2"}
                 onPress={() => {
-                  setModalVisible(false);
+                  setModalVisible(!modalVisible);
                 }}
               >
                 Add To Cart
               </Button>
-            </Modal.Footer>
-          </Modal.Content>
-        </Modal>
-        <VStack space={8} alignItems="center">
-          <Button
-            w="104"
-            onPress={() => {
-              setModalVisible(!modalVisible);
-            }}
+            </HStack>
+          </Box>
+          {/* <Button width={"32"} mb={"2"} left={"2"}>
+          Add To Cart
+        </Button> */}
+
+          <Modal
+            isOpen={modalVisible}
+            onClose={() => setModalVisible(false)}
+            avoidKeyboard
+            justifyContent="flex-end"
+            size="full"
           >
-            Add To Cart
-          </Button>
-        </VStack>
-      </Flex>
+            <Modal.Content>
+              <Modal.CloseButton />
+              <Modal.Header>
+                <Box>
+                  <AspectRatio w="50%" ratio={16 / 9}>
+                    <Image
+                      rounded={"lg"}
+                      source={{
+                        uri: "https://images.deliveryhero.io/image/nv/Thailand/Vendor-Ops/09012023/TH-Whiskas-Tuna-Flavour-Cat-Food-3kg-Front-View.jpg?height=480",
+                      }}
+                      alt="Image"
+                    />
+                  </AspectRatio>
+                </Box>
+                <Box position={"absolute"} left={"48"} top={"5"} gap={2}>
+                  <Text style={{ color: "#2196F3" }}>$26.99</Text>
+                  <Text style={{ color: "#939393" }}>Dog Food</Text>
+                </Box>
+              </Modal.Header>
+              <Modal.Body>
+                <AspectRatio w="30%" ratio={16 / 9}>
+                  <Image
+                    rounded={"lg"}
+                    source={{
+                      uri: "https://images.deliveryhero.io/image/nv/Thailand/Vendor-Ops/09012023/TH-Whiskas-Tuna-Flavour-Cat-Food-3kg-Front-View.jpg?height=480",
+                    }}
+                    alt="Image"
+                  />
+                </AspectRatio>
+
+                <Box style={{ marginTop: 50 }}>
+                  <Flex
+                    direction="row"
+                    justifyContent={"space-between"}
+                    alignItems={"center"}
+                  >
+                    <Text style={{ fontWeight: "bold" }}>Quantity</Text>
+                    <Box>
+                      <Flex direction={"row"} gap={4} alignItems={"center"}>
+                        <Button onPress={increase}>+</Button>
+                        <Text>{count}</Text>
+                        <Button onPress={decrease}>-</Button>
+                      </Flex>
+                    </Box>
+                  </Flex>
+                </Box>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  flex="1"
+                  onPress={() => {
+                    setModalVisible(false);
+                  }}
+                >
+                  Add To Cart
+                </Button>
+              </Modal.Footer>
+            </Modal.Content>
+          </Modal>
+        </Flex>
+      </SafeAreaView>
     </>
   );
 };
@@ -202,10 +197,8 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   text3: {
-    marginTop: 20,
-
-    fontFamily: "Leckerl",
-    color: "#2196F3",
+    fontWeight: "bold",
+    color: "black",
     fontSize: 26,
   },
 });

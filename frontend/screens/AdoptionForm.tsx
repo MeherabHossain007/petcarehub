@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Icon, Input, ScrollView, VStack, Radio, Checkbox } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
+import { supabase } from "../lib/supabase";
 
 const AdoptionForm = ({ navigation }) => {
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [size, setSize] = useState("");
+  const [petTypes, setPetTypes] = useState("");
+  const [adoption, setAdaption] = useState([]);
+
+  const handleSubmission = async () => {
+    const { data, error } = await supabase
+      .from("adoptation")
+      .select()
+      .filter("age", "eq", age)
+      .filter("gender", "eq", gender)
+      .filter("size", "eq", size)
+      .filter("type", "eq", petTypes);
+
+    if (error) {
+      console.log(error);
+    }
+
+    if (data) {
+      setAdaption(data);
+      navigation.navigate("AdoptionPets", { post: adoption });
+    }
+  };
   return (
     <>
       <ScrollView>
@@ -31,51 +56,42 @@ const AdoptionForm = ({ navigation }) => {
         <View style={styles.inputContainer}>
           <VStack w="100%" space={5} alignSelf="center">
             {/* Pet Types */}
-            <Text style={styles.label}>Pet Types (*)</Text>
-            <Checkbox.Group
-              defaultValue={[]}
-              accessibilityLabel="choose pet types"
-              colorScheme="green"
-            >
-              <Checkbox value="cat">Cat</Checkbox>
-              <Checkbox value="dog">Dog</Checkbox>
-              <Checkbox value="others">Others</Checkbox>
-            </Checkbox.Group>
+            <Text style={styles.label}>Pet Types</Text>
+            <Radio.Group name="type" onChange={setPetTypes}>
+              <Radio value="cat">Cat</Radio>
+              <Radio value="dog">Dog</Radio>
+              <Radio value="others">Others</Radio>
+            </Radio.Group>
 
             {/* Gender */}
-            <Text style={styles.label}>Gender (Optional)</Text>
-            <Radio.Group defaultValue="male" name="gender">
+            <Text style={styles.label}>Gender</Text>
+            <Radio.Group name="gender" onChange={setGender}>
               <Radio value="male">Male</Radio>
               <Radio value="female">Female</Radio>
             </Radio.Group>
 
             {/* Size */}
-            <Text style={styles.label}>Size (Optional)</Text>
-            <Radio.Group defaultValue="small" name="size">
+            <Text style={styles.label}>Size </Text>
+            <Radio.Group name="size" onChange={setSize}>
               <Radio value="small">Small</Radio>
               <Radio value="medium">Medium</Radio>
               <Radio value="large">Large</Radio>
             </Radio.Group>
 
             {/* Age */}
-            <Text style={styles.label}>Age (Optional)</Text>
-            <Radio.Group defaultValue="baby" name="age">
+            <Text style={styles.label}>Age </Text>
+            <Radio.Group name="age" onChange={setAge}>
               <Radio value="baby">Baby</Radio>
               <Radio value="young">Young</Radio>
               <Radio value="adult">Adult</Radio>
             </Radio.Group>
-
-            {/* Search Button */}
-            <TouchableOpacity style={styles.searchButton}>
-              <Text
-                onPress={() => navigation.navigate("AdoptionPets")}
-                style={styles.searchButtonText}
-              >
-                Search Now
-              </Text>
-              {/* <Button onPress={() => navigation.navigate("AdoptionForm")}> */}
-            </TouchableOpacity>
           </VStack>
+          <TouchableOpacity
+            style={styles.searchButton}
+            onPress={handleSubmission}
+          >
+            <Text style={styles.searchButtonText}>Search Now</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </>
@@ -96,7 +112,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 30,
     marginRight: 20,
     marginBottom: 20,
   },

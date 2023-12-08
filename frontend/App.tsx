@@ -2,7 +2,6 @@ import React from "react";
 import { NativeBaseProvider, Box } from "native-base";
 import Home from "./screens/Home";
 import StartPage from "./screens/StartPage";
-
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -18,6 +17,8 @@ import AdoptContact from "./screens/AdoptContact";
 import { AuthProvider } from "./providers/AuthProvider";
 import AddPets from "./screens/AddPets";
 import Checkout from "./screens/Checkout";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import ChatScreen from "./screens/ChatScreen";
 
 export default function App() {
   const stack = createStackNavigator();
@@ -25,8 +26,7 @@ export default function App() {
   const Tab = createBottomTabNavigator();
 
   return (
-
-    <AuthProvider>
+    <SafeAreaProvider>
       <NativeBaseProvider>
         <NavigationContainer>
           <stack.Navigator
@@ -41,15 +41,15 @@ export default function App() {
             <stack.Screen name="Dashboard" component={Dashboard} />
             <stack.Screen name="Details" component={Details} />
             <stack.Screen name="AdoptionForm" component={AdoptionForm} />
-            <stack.Screen name="AdoptionForm" component={AdoptionForm} />
             <stack.Screen name="AdoptionPets" component={AdoptionPets} />
             <stack.Screen name="PetDetails" component={PetDetails} />
+            <stack.Screen name="AddPets" component={AddPets} />
             <stack.Screen name="AdoptContact" component={AdoptContact} />
             <stack.Screen name="Checkout" component={Checkout} />
-            
+            <stack.Screen name="Chat" component={ChatScreen} />
           </stack.Navigator>
         </NavigationContainer>
       </NativeBaseProvider>
-    </AuthProvider>
+    </SafeAreaProvider>
   );
 }
