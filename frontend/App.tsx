@@ -16,6 +16,7 @@ import PetDetails from "./screens/PetDetails";
 import AdoptContact from "./screens/AdoptContact";
 import { AuthProvider } from "./providers/AuthProvider";
 import AddPets from "./screens/AddPets";
+import Checkout from "./screens/Checkout";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import ChatScreen from "./screens/ChatScreen";
 
@@ -44,6 +45,7 @@ export default function App() {
             <stack.Screen name="PetDetails" component={PetDetails} />
             <stack.Screen name="AddPets" component={AddPets} />
             <stack.Screen name="AdoptContact" component={AdoptContact} />
+            <stack.Screen name="Checkout" component={Checkout} />
             <stack.Screen name="Chat" component={ChatScreen} />
           </stack.Navigator>
         </NavigationContainer>
