@@ -1,5 +1,5 @@
 import { Icon, Input, ScrollView, VStack, Radio, Checkbox } from "native-base";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -9,7 +9,6 @@ import {
   Image,
   Button,
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
 import { supabase } from "../lib/supabase";
 
 const AddPets = () => {
@@ -19,28 +18,49 @@ const AddPets = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [userLocation, setUserLocation] = useState("");
-  const [image, setImage] = useState(null);
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [size, setSize] = useState("");
+  const [petTypes, setPetTypes] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-    }
-  };
+  useEffect(() => {
+    const image = () => {
+      if (petTypes == "cat") {
+        setImageUrl(
+          "https://eycmbkgaramyyygbikxq.supabase.co/storage/v1/object/public/photo/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg"
+        );
+      } else if (petTypes == "dog") {
+        setImageUrl(
+          "https://eycmbkgaramyyygbikxq.supabase.co/storage/v1/object/public/photo/dog-puppy-on-garden-royalty-free-image-1586966191.jpg"
+        );
+      } else {
+        setImageUrl(
+          "https://eycmbkgaramyyygbikxq.supabase.co/storage/v1/object/public/photo/Asset%2013343.png"
+        );
+      }
+    };
+    image();
+  }, [petTypes]);
 
   const handleSubmission = async () => {
     const { data, error } = await supabase
       .from("adoptation")
-      .insert([{ name: petName }, { breed: petBreed }, ])
+      .insert([
+        {
+          name: petName,
+          breed: petBreed,
+          phone: phoneNumber,
+          email: email,
+          location: userLocation,
+          zipcode: petLocation,
+          age: age,
+          gender: gender,
+          size: size,
+          type: petTypes,
+          photo: imageUrl,
+        },
+      ])
       .select();
 
     if (error) {
@@ -68,7 +88,7 @@ const AddPets = () => {
             onChangeText={(text) => setPetBreed(text)}
           />
 
-          <Text style={styles.label}>Pet Location:</Text>
+          <Text style={styles.label}>Zip Code:</Text>
           <TextInput
             style={styles.input}
             placeholder="Enter pet location"
@@ -105,58 +125,37 @@ const AddPets = () => {
           <View style={styles.inputContainer}>
             <VStack w="100%" space={5} alignSelf="center">
               {/* Pet Types */}
-              <Text style={styles.label}>Pet Types (*)</Text>
-              <Checkbox.Group
-                defaultValue={[]}
-                accessibilityLabel="choose pet types"
-                colorScheme="green"
-              >
-                <Checkbox value="cat">Cat</Checkbox>
-                <Checkbox value="dog">Dog</Checkbox>
-                <Checkbox value="others">Others</Checkbox>
-              </Checkbox.Group>
+              <Text style={styles.label}>Pet Types</Text>
+              <Radio.Group name="type" onChange={setPetTypes}>
+                <Radio value="cat">Cat</Radio>
+                <Radio value="dog">Dog</Radio>
+                <Radio value="others">Others</Radio>
+              </Radio.Group>
 
               {/* Gender */}
-              <Text style={styles.label}>Gender (Optional)</Text>
-              <Radio.Group defaultValue="male" name="gender">
+              <Text style={styles.label}>Gender</Text>
+              <Radio.Group name="gender" onChange={setGender}>
                 <Radio value="male">Male</Radio>
                 <Radio value="female">Female</Radio>
               </Radio.Group>
 
               {/* Size */}
-              <Text style={styles.label}>Size (Optional)</Text>
-              <Radio.Group defaultValue="small" name="size">
+              <Text style={styles.label}>Size </Text>
+              <Radio.Group name="size" onChange={setSize}>
                 <Radio value="small">Small</Radio>
                 <Radio value="medium">Medium</Radio>
                 <Radio value="large">Large</Radio>
               </Radio.Group>
 
               {/* Age */}
-              <Text style={styles.label}>Age (Optional)</Text>
-              <Radio.Group defaultValue="baby" name="age">
+              <Text style={styles.label}>Age </Text>
+              <Radio.Group name="age" onChange={setAge}>
                 <Radio value="baby">Baby</Radio>
                 <Radio value="young">Young</Radio>
                 <Radio value="adult">Adult</Radio>
               </Radio.Group>
             </VStack>
           </View>
-
-          <Text style={styles.label}>Pet Photo:</Text>
-          <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-          >
-            <Button
-              title="Pick an image from camera roll"
-              onPress={pickImage}
-            />
-            {image && (
-              <Image
-                source={{ uri: image }}
-                style={{ width: 200, height: 200 }}
-              />
-            )}
-          </View>
-
           <TouchableOpacity
             style={styles.submitButton}
             onPress={handleSubmission}
