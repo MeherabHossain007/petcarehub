@@ -10,6 +10,7 @@ import {
   Button,
 } from "react-native";
 import { supabase } from "../lib/supabase";
+import { useNavigation } from "@react-navigation/native";
 
 const AddPets = () => {
   const [petName, setPetName] = useState("");
@@ -23,6 +24,8 @@ const AddPets = () => {
   const [size, setSize] = useState("");
   const [petTypes, setPetTypes] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     const image = () => {
@@ -65,6 +68,10 @@ const AddPets = () => {
 
     if (error) {
       console.log(error);
+    }
+
+    if (data){
+      navigation.goBack(); 
     }
   };
 

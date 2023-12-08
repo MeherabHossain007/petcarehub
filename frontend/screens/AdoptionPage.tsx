@@ -123,7 +123,7 @@ const AdoptionPage = ({ navigation }) => {
                 colorScheme={"lightBlue"}
                 mt={5}
               >
-                <Text style={style.btnText}>Adopt Now</Text>
+                <Text style={style.btnText}>Add Adoption</Text>
               </Button>
             </View>
           </View>
@@ -291,7 +291,6 @@ const style = StyleSheet.create({
   },
   heroRight2: {
     width: 150,
-    position: "relative",
   },
   secondText: {
     color: "#939393",
