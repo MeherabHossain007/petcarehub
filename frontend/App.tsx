@@ -42,6 +42,7 @@ export default function App() {
             <stack.Screen name="AdoptionForm" component={AdoptionForm} />
             <stack.Screen name="AdoptionPets" component={AdoptionPets} />
             <stack.Screen name="PetDetails" component={PetDetails} />
+            <stack.Screen name="AddPets" component={AddPets} />
             <stack.Screen name="AdoptContact" component={AdoptContact} />
           </stack.Navigator>
         </NavigationContainer>
