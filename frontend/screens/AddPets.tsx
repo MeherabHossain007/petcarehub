@@ -1,4 +1,4 @@
-import { ScrollView } from "native-base";
+import { Icon, Input, ScrollView, VStack, Radio, Checkbox } from "native-base";
 import React, { useState } from "react";
 import {
   View,
@@ -88,6 +88,45 @@ const AddPets = () => {
             onChangeText={(text) => setUserLocation(text)}
           />
 
+          <View style={styles.inputContainer}>
+            <VStack w="100%" space={5} alignSelf="center">
+              {/* Pet Types */}
+              <Text style={styles.label}>Pet Types (*)</Text>
+              <Checkbox.Group
+                defaultValue={[]}
+                accessibilityLabel="choose pet types"
+                colorScheme="green"
+              >
+                <Checkbox value="cat">Cat</Checkbox>
+                <Checkbox value="dog">Dog</Checkbox>
+                <Checkbox value="others">Others</Checkbox>
+              </Checkbox.Group>
+
+              {/* Gender */}
+              <Text style={styles.label}>Gender (Optional)</Text>
+              <Radio.Group defaultValue="male" name="gender">
+                <Radio value="male">Male</Radio>
+                <Radio value="female">Female</Radio>
+              </Radio.Group>
+
+              {/* Size */}
+              <Text style={styles.label}>Size (Optional)</Text>
+              <Radio.Group defaultValue="small" name="size">
+                <Radio value="small">Small</Radio>
+                <Radio value="medium">Medium</Radio>
+                <Radio value="large">Large</Radio>
+              </Radio.Group>
+
+              {/* Age */}
+              <Text style={styles.label}>Age (Optional)</Text>
+              <Radio.Group defaultValue="baby" name="age">
+                <Radio value="baby">Baby</Radio>
+                <Radio value="young">Young</Radio>
+                <Radio value="adult">Adult</Radio>
+              </Radio.Group>
+            </VStack>
+          </View>
+
           <Text style={styles.label}>Pet Photo:</Text>
           <TouchableOpacity onPress={handleChoosePhoto}>
             <Text style={styles.uploadButtonText}>Upload Photo</Text>
@@ -115,6 +154,10 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     marginTop: 40,
+  },
+  inputContainer: {
+    marginTop: 10,
+    marginLeft: 0,
   },
   label: {
     fontSize: 16,
