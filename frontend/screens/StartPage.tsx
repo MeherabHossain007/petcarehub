@@ -1,19 +1,13 @@
 import { Text } from "native-base";
 import React from "react";
 import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
-import { Entypo } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-export default function StartPage({ navigation }) {
+export default function StartPage() {
+  const navigation = useNavigation();
   return (
     <>
-      <View style={style.iconStyle}>
-        <Entypo
-          onPress={() => navigation.navigate("Home")}
-          name="cross"
-          size={30}
-          color="black"
-        />
-      </View>
+      <View style={style.iconStyle}></View>
       <View style={style.firstContainer}>
         <View>
           <Text style={style.text1}>All Your Pet Needs</Text>
@@ -30,7 +24,7 @@ export default function StartPage({ navigation }) {
         <View style={style.fullBtn}>
           <TouchableOpacity style={style.btnStyle}>
             <Text
-              onPress={() => navigation.navigate("RegisterPage")}
+              onPress={() => navigation.navigate("RegisterPage" as never)}
               style={style.btnText}
             >
               Register
@@ -38,7 +32,7 @@ export default function StartPage({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity style={style.btnStyle}>
             <Text
-              onPress={() => navigation.navigate("LoginPage")}
+              onPress={() => navigation.navigate("LoginPage" as never)}
               style={style.btnText}
             >
               Login
@@ -53,7 +47,6 @@ export default function StartPage({ navigation }) {
 const style = StyleSheet.create({
   firstContainer: {
     height: 150,
-
     paddingLeft: 30,
     marginTop: 20,
     marginLeft: 70,

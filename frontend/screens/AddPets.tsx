@@ -7,8 +7,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  Button,
 } from "react-native";
-import ImagePicker from "react-native-image-picker";
+import * as ImagePicker from "expo-image-picker";
 
 const AddPets = () => {
   const [petName, setPetName] = useState("");
@@ -17,17 +18,22 @@ const AddPets = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [userLocation, setUserLocation] = useState("");
-  const [photo, setPhoto] = useState(null);
+  const [image, setImage] = useState(null);
 
-  const handleChoosePhoto = () => {
-    const options = {
-      noData: true,
-    };
-    ImagePicker.launchImageLibrary(options, (response) => {
-      if (response.uri) {
-        setPhoto(response);
-      }
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
   };
 
   const handleSubmission = () => {
@@ -128,15 +134,20 @@ const AddPets = () => {
           </View>
 
           <Text style={styles.label}>Pet Photo:</Text>
-          <TouchableOpacity onPress={handleChoosePhoto}>
-            <Text style={styles.uploadButtonText}>Upload Photo</Text>
-          </TouchableOpacity>
-          {photo && (
-            <Image
-              source={{ uri: photo.uri }}
-              style={{ width: 300, height: 300 }}
+          <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          >
+            <Button
+              title="Pick an image from camera roll"
+              onPress={pickImage}
             />
-          )}
+            {image && (
+              <Image
+                source={{ uri: image }}
+                style={{ width: 200, height: 200 }}
+              />
+            )}
+          </View>
 
           <TouchableOpacity
             style={styles.submitButton}

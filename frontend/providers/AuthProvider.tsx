@@ -5,7 +5,7 @@ interface AuthContextType {
   isLoggedIn: boolean;
   Email: string | null;
   Name: string | null; // New field for Name
-  updateLoginState: (
+  LoginState: (
     loggedIn: boolean,
     email?: string | null,
     name?: string | null
@@ -16,7 +16,7 @@ const initialAuthContext: AuthContextType = {
   isLoggedIn: false,
   Email: null,
   Name: null, // Initialize Name as null
-  updateLoginState: async () => {},
+  LoginState: async () => {},
 };
 
 export const AuthContext = createContext<AuthContextType>(initialAuthContext);
@@ -43,14 +43,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (userLoggedIn !== null && email !== null && name !== null) {
         setIsLoggedIn(JSON.parse(userLoggedIn));
         setEmail(email);
-        setName(name); // Set the Name state
+        setName(name);
+         // Set the Name state
       }
     } catch (error) {
       console.error("Error loading login state:", error);
     }
   };
 
-  const updateLoginState = async (
+  const LoginState = async (
     loggedIn: boolean,
     email?: string | null,
     name?: string | null
@@ -83,7 +84,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     isLoggedIn,
     Email,
     Name, // Include Name in the context value
-    updateLoginState,
+    LoginState,
   };
 
   return (
