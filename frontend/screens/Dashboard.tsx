@@ -24,9 +24,10 @@ import Config from "../config/config";
 
 interface Product {
   id: number;
-  name: string;
+  title: string;
   price: string;
   stock: string;
+  photo: string;
   // Add other fields as needed
 }
 
@@ -57,8 +58,6 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
     setProducts(sortedProducts);
   };
 
-
-
   return (
     <>
       <ScrollView mb={2}>
@@ -75,7 +74,9 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
                 endIcon: <CheckIcon size="5" />,
               }}
               mt={1}
-              onValueChange={(itemValue) => {sortByPrice(products,itemValue)}}
+              onValueChange={(itemValue) => {
+                sortByPrice(products, itemValue);
+              }}
             >
               <Select.Item label="Price (low to high)" value="lowHigh" />
               <Select.Item label="Price (high to low)" value="highLow" />
@@ -84,49 +85,51 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
         </Center>
         <Center>
           <SimpleGrid columns={2}>
-            <Box mx={2} mt={10}>
-              <Box
-                width="40"
-                overflow="hidden"
-                borderColor="coolGray.200"
-                borderWidth="1"
-                _dark={{
-                  borderColor: "coolGray.600",
-                  backgroundColor: "gray.700",
-                }}
-                _web={{
-                  shadow: 2,
-                  borderWidth: 0,
-                }}
-                _light={{
-                  backgroundColor: "gray.50",
-                }}
-              >
-                <Box alignItems={"center"}>
-                  <AspectRatio w="90%" ratio={16 / 9} mt={3}>
-                    <Image
-                      source={{
-                        uri: "https://images.deliveryhero.io/image/nv/Thailand/Vendor-Ops/09012023/TH-Whiskas-Tuna-Flavour-Cat-Food-3kg-Front-View.jpg?height=480",
-                      }}
-                      alt="image"
-                    />
-                  </AspectRatio>
-                </Box>
-                <Stack p="4" space={3}>
-                  <Stack space={2}>
-                    <Heading size="sm" ml="-1">
-                      DogFood (afoxolaner) chewwables
-                    </Heading>
+            {products.map((product) => (
+              <Box mx={2} mt={10}>
+                <Box
+                  width="40"
+                  overflow="hidden"
+                  borderColor="coolGray.200"
+                  borderWidth="1"
+                  _dark={{
+                    borderColor: "coolGray.600",
+                    backgroundColor: "gray.700",
+                  }}
+                  _web={{
+                    shadow: 2,
+                    borderWidth: 0,
+                  }}
+                  _light={{
+                    backgroundColor: "gray.50",
+                  }}
+                >
+                  <Box alignItems={"center"}>
+                    <AspectRatio w="90%" ratio={16 / 9} mt={3}>
+                      <Image
+                        source={{
+                          uri: `${product.photo}`,
+                        }}
+                        alt="image"
+                      />
+                    </AspectRatio>
+                  </Box>
+                  <Stack p="4" space={3}>
+                    <Stack space={2}>
+                      <Heading size="sm" ml="-1">
+                        {product.title}
+                      </Heading>
+                    </Stack>
+                    <Text fontWeight="400" color={"blue.400"}>
+                      ৳{product.price}
+                    </Text>
+                    <Button onPress={() => navigation.navigate("Details", {prod: product})}>
+                      Show details
+                    </Button>
                   </Stack>
-                  <Text fontWeight="400" color={"blue.400"}>
-                    $26.99
-                  </Text>
-                  <Button onPress={() => navigation.navigate("Details")}>
-                    Show details
-                  </Button>
-                </Stack>
+                </Box>
               </Box>
-            </Box>
+            ))}
           </SimpleGrid>
         </Center>
       </ScrollView>

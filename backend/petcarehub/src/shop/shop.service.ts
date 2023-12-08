@@ -9,7 +9,7 @@ export class ShopService {
     @InjectRepository(Shop) private readonly shopRepository: Repository<Shop>,
   ) {}
 
-  async getAll(): Promise<any[]> {
+  async getAll(): Promise<any[] | Shop> {
     try {
       const product = await this.shopRepository.find();
       return product; // Return the array of products
