@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import {
   Button,
@@ -9,6 +9,8 @@ import {
   VStack,
   Image,
   HStack,
+  Box,
+  Text,
 } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
@@ -17,6 +19,54 @@ import { supabase } from "../lib/supabase";
 
 const AdoptionPage = ({ navigation }) => {
   const [adoption, setAdaption] = useState([]);
+
+  const DogCategory = () => {
+    const fetchData = async () => {
+      let { data, error } = await supabase
+        .from("adoptation")
+        .select("*")
+        .filter("type", "eq", "dog");
+      if (data) {
+        setAdaption(data);
+      }
+      if (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }
+
+    const CatCategory = () => {
+      const fetchData = async () => {
+        let { data, error } = await supabase
+          .from("adoptation")
+          .select("*")
+          .filter("type", "eq", "cat");
+        if (data) {
+          setAdaption(data);
+        }
+        if (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    };
+
+      const OtherCategory = () => {
+        const fetchData = async () => {
+          let { data, error } = await supabase
+            .from("adoptation")
+            .select("*")
+            .filter("type", "eq", "others");
+          if (data) {
+            setAdaption(data);
+          }
+          if (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,9 +81,6 @@ const AdoptionPage = ({ navigation }) => {
     fetchData();
   }, []);
 
-  const handleAdoptMePress = (pet) => {
-    navigation.navigate("PetDetails", { pet });
-  };
   return (
     <>
       <SafeAreaView>
@@ -80,6 +127,15 @@ const AdoptionPage = ({ navigation }) => {
               </Button>
             </View>
           </View>
+
+          <Button
+            colorScheme={"lightBlue"}
+            m={3}
+            onPress={() => navigation.navigate("AdoptionForm")}
+          >
+            <Text color={"white"}>Search Now</Text>
+          </Button>
+
           {/* Cateogory */}
           <View>
             <Text style={style.mainText3}>Categories</Text>
@@ -87,7 +143,7 @@ const AdoptionPage = ({ navigation }) => {
           <View style={style.heroMain4}>
             <SimpleGrid columns={3} space={5}>
               <Button
-                onPress={() => navigation.navigate("AdoptionForm")}
+                onPress={DogCategory}
                 colorScheme={"lightBlue"}
               >
                 <Image
@@ -96,7 +152,7 @@ const AdoptionPage = ({ navigation }) => {
                 />
               </Button>
               <Button
-                onPress={() => navigation.navigate("AdoptionForm")}
+                onPress={CatCategory}
                 colorScheme={"lightBlue"}
               >
                 <Image
@@ -105,7 +161,7 @@ const AdoptionPage = ({ navigation }) => {
                 />
               </Button>
               <Button
-                onPress={() => navigation.navigate("AdoptionForm")}
+                onPress={OtherCategory}
                 colorScheme={"lightBlue"}
               >
                 <Image
@@ -140,7 +196,7 @@ const AdoptionPage = ({ navigation }) => {
                           <Text
                             style={style.btnText}
                             onPress={() =>
-                              navigation.navigate("PetDetails", {pet: post})
+                              navigation.navigate("PetDetails", { pet: post })
                             }
                           >
                             Details
@@ -251,6 +307,13 @@ const style = StyleSheet.create({
     width: 100,
     alignItems: "center",
     marginTop: 20,
+  },
+  searchButtonStyle: {
+    backgroundColor: "#f5f5f5",
+    borderRadius: 5,
+    padding: 10,
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 

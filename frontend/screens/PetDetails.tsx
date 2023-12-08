@@ -53,13 +53,26 @@ const PetDetails = ({ route, navigation }: any) => {
             >
               {pet.phone}
             </Badge>
-            <Button
-              onPress={() => Linking.openURL(`tel:${pet.phone}`)}
-              colorScheme={"lightBlue"}
-              mt={5}
-            >
-              <Text style={style.btnText}>Adopt Now</Text>
-            </Button>
+            <HStack space={4}>
+              <Button
+                onPress={() => Linking.openURL(`tel:${pet.phone}`)}
+                colorScheme={"lightBlue"}
+                mt={5}
+              >
+                <Text style={style.btnText}>Adopt Now</Text>
+              </Button>
+              <Button
+                onPress={() =>
+                  Linking.openURL(
+                    `whatsapp://send?text=hello&phone=+88${pet.phone}`
+                  )
+                }
+                colorScheme={"green"}
+                mt={5}
+              >
+                <Text style={style.btnText}>Whatsapp Now</Text>
+              </Button>
+            </HStack>
           </View>
         </View>
       </View>
