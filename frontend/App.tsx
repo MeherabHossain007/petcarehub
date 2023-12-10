@@ -110,6 +110,7 @@ export default function App() {
             <Tab.Screen name="Dashboard" component={Dashboard} />
             <Tab.Screen name="Dashboard" component={PetDetails} />
             <Tab.Screen name="Dashboard" component={AddPets} />
+            <Tab.Screen name="Dashboard" component={AdoptionForm} />
             
             
 
