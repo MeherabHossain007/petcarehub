@@ -49,6 +49,64 @@ export default function App() {
             <stack.Screen name="Chat" component={ChatScreen} />
           </stack.Navigator>
         </NavigationContainer>
+
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+                let iconColor;
+
+                if (route.name === "Home") {
+                  iconName = focused ? "home" : "home";
+                  iconColor = focused ? "#FFB97D" : "#FFB97D";
+                } else if (route.name === "AdoptionPage") {
+                  iconName = focused ? "paw" : "paw";
+                  iconColor = focused ? "#FFB97D" : "#FFB97D";
+                } else if (route.name === "Dashboard") {
+                  iconName = focused ? "user" : "user";
+                  iconColor = focused ? "#FFB97D" : "#FFB97D";
+                }
+
+                // You can return any component that you like here!
+                return (
+                  <Box
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: 50,
+                      padding: 10,
+                    }}
+                  >
+                    <Icon
+                      style={{ color: iconColor, fontSize: 30 }}
+                      as={<AntDesign name={iconName} />}
+                    />
+                  </Box>
+                );
+              },
+            })}
+            tabBarOptions={{
+              activeTintColor: "#FFB97D",
+              inactiveTintColor: "gray",
+              showLabel: false,
+              style: {
+                backgroundColor: "#fff",
+                borderTopWidth: 0,
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                elevation: 0,
+              },
+            }}
+          >
+            <Tab.Screen name="Home" component={Home} />
+            <Tab.Screen name="AdoptionPage" component={AdoptionPage} />
+            <Tab.Screen name="Dashboard" component={Dashboard} />
+          </Tab.Navigator>
+          
+
+        </NavigationContainer>
       </NativeBaseProvider>
     </SafeAreaProvider>
   );
