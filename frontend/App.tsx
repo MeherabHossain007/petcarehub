@@ -19,6 +19,7 @@ import AddPets from "./screens/AddPets";
 import Checkout from "./screens/Checkout";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import ChatScreen from "./screens/ChatScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 export default function App() {
   const stack = createStackNavigator();
@@ -47,6 +48,7 @@ export default function App() {
             <stack.Screen name="AdoptContact" component={AdoptContact} />
             <stack.Screen name="Checkout" component={Checkout} />
             <stack.Screen name="Chat" component={ChatScreen} />
+            <stack.Screen name="ProfileScreen" component={ProfileScreen} />
           </stack.Navigator>
         </NavigationContainer>
 
@@ -113,6 +115,7 @@ export default function App() {
             <Tab.Screen name="AdoptionForm" component={AdoptionForm} />
             <Tab.Screen name="AdoptContact" component={AdoptContact} />
             <Tab.Screen name="Checkout" component={Checkout} />
+            <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
             
             
 
