@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { TextInput } from "react-native-gesture-handler";
 
@@ -25,8 +25,7 @@ const ProfileScreen = () => {
         value={email}
         onChangeText={(text) => setEmail(text)}
         keyboardType="email-address"
-      />
-
+      />n
       <Button title="Update Profile" onPress={handleUpdateProfile} />
     </View>
   );
@@ -34,4 +33,13 @@ const ProfileScreen = () => {
 
 export default ProfileScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 16,
+      },
+      label: {
+        fontSize: 18,
+        marginBottom: 8,
+      },
+});
