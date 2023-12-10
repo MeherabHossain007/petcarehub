@@ -26,6 +26,8 @@ const ProfileScreen = () => {
         onChangeText={(text) => setEmail(text)}
         keyboardType="email-address"
       />
+
+      <Button title="Update Profile" onPress={handleUpdateProfile} />
     </View>
   );
 };
